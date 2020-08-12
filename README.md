@@ -1,5 +1,5 @@
-# SPIS 2020 - Machine Learning / Data Science Project Repository
+# SPIS 2020 - ML / DS Project Repository
 
-## Projects:
+### Projects:
 
 - Iris Recognition
