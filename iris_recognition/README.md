@@ -4,6 +4,8 @@ Description: This classifier model will predict the Iris flower based on sepal
 length, sepal width, petal length and petal width (all in cm). There are three different classes:
 Iris Setosa, Iris Versicolor and Iris Virginica.
 
+Interactive Web App: https://matiaslin.shinyapps.io/irisRecognition/
+
 #
 
 There are 150 data points, 50 for each class.
