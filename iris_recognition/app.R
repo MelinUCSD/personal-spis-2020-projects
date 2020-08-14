@@ -34,17 +34,17 @@ use_python(path_to_python)
       tabPanel("Plot",
             sidebarPanel(
                 selectInput("x_feature", "X-Axis:",
-                    c("Choose a value" = "", "Sepal length" = "sl", "Sepal width" = "sw", "Petal length" = "pl", "Petal width" = "pw"),
+                            c("Choose a value" = "", "Sepal length" = "Sepal Length", "Sepal width" = "Sepal Width","Petal length" = "Petal Length", "Petal width" = "Petal WIdth"),
                 ),
                 selectInput("y_feature", "Y Axis:",
-                    c("Choose a value" = "", "Sepal length" = "sl", "Sepal width" = "sw", "Petal length" = "pl", "Petal width" = "pw"),
+                            c("Choose a value" = "", "Sepal length" = "Sepal Length", "Sepal width" = "Sepal Width","Petal length" = "Petal Length", "Petal width" = "Petal WIdth"),
                 ),
                 actionButton("button", "Plot!", style="color:#fff; background-color: #e95420; border-color: #c34113;
 >                                border-radius: 10px; 
 >                                border-width: 2px"),  
             ),
             mainPanel(
-                textOutput("result"),
+                #textOutput("result"),
                 imageOutput("plot")
             )
       ),
@@ -72,39 +72,17 @@ use_python(path_to_python)
     })
 
     observeEvent(input$button, {
-        output$result <- renderText({
-            if (input$x_feature != "" && input$y_feature != "") {
-                paste( "X-Axis:", input$x_feature, "Y-Axis:", input$y_feature )
-                if (input$x_feature == "sl") {
-                    x_index <- 0
-                } else if (input$x_feature == "sw") {
-                    x_index <- 1
-                } else if (input$x_feature == "pl") {
-                    x_index <- 2
-                } else if (input$x_feature == "pw") {
-                    x_index <- 3
-                }
-
-                if (input$y_feature == "sl") {
-                    y_index <- 0
-                } else if (input$y_feature == "sw") {
-                    y_index <- 1
-                } else if (input$y_feature == "pl") {
-                    y_index <- 2
-                } else if (input$y_feature == "pw") {
-                    y_index <- 3
-                }
-
-                title <- c(input$x_feature, input$y_feature)
-                model$plot(model$features_list[x_index], model$features_list[y_index], model$target, 
-                            title, model$labels_list[x_index], model$labels_list[y_index])
-
-                output$plot <- renderImage({
-                    map_harvest(lm_map_prod_filter())
-                    list(src = title)
-                })
-            }
-        })
+        if (input$x_feature != "" && input$y_feature != "") {
+          title <- c(input$x_feature, input$y_feature)
+          title <- paste(title, collapse=" vs ")
+          model$plot(input$x_feature, input$y_feature, model$target, title)
+        }
+        
+        output$plot <- renderImage({
+            image_name <- normalizePath(file.path("./",
+                           paste(title, ".png", sep="")))
+            list(src = image_name)
+        }, deleteFile = TRUE)
     })
   } # server
 
