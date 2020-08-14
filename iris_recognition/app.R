@@ -44,11 +44,17 @@ use_python(path_to_python)
 >                                border-width: 2px"),  
             ),
             mainPanel(
-                #textOutput("result"),
                 imageOutput("plot")
             )
       ),
-      tabPanel("Dataset", "TODO: information about dataset")
+      tabPanel("Dataset",
+               mainPanel(
+                 fluidRow(
+                   column(12, dataTableOutput('table')
+                   )
+                 )
+              ),
+      )
       ) # navbarPage
   ) # fluidPage
   
@@ -84,6 +90,8 @@ use_python(path_to_python)
             list(src = image_name)
         }, deleteFile = TRUE)
     })
+    
+    output$table <- renderDataTable(iris)
   } # server
 
   # Create Shiny object
