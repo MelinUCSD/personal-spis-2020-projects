@@ -1,11 +1,14 @@
 # Load R packages
+library(DT)
 library(reticulate)
 library(shiny)
 library(shinythemes)
 
 # Reticulate Python libraries imports
-path_to_python <- "/Users/matias/miniconda3/bin/python"
-use_python(path_to_python)
+reticulate::virtualenv_create("python35_env", python = "python3")
+reticulate::virtualenv_install("python35_env", packages = c("sklearn", "matplotlib", "numpy"))
+reticulate::use_virtualenv("python35_env", required = TRUE)
+reticulate::source_python("main.py")
 
   # Define UI
   ui <- fluidPage(theme = shinytheme("united"),
@@ -50,7 +53,7 @@ use_python(path_to_python)
       tabPanel("Dataset",
                mainPanel(
                  fluidRow(
-                   column(12, dataTableOutput('table')
+                   column(12, DT::dataTableOutput("table")
                    )
                  )
               ),
@@ -91,7 +94,7 @@ use_python(path_to_python)
         }, deleteFile = TRUE)
     })
     
-    output$table <- renderDataTable(iris)
+    output$table <- DT::renderDataTable(iris, env=parent.frame())
   } # server
 
   # Create Shiny object
