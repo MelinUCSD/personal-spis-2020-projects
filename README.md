@@ -2,4 +2,4 @@
 
 ### Projects:
 
-- Iris Recognition
+- [Iris Recognition](./iris_recognition)
