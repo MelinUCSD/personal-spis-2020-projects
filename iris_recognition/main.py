@@ -55,9 +55,30 @@ def getFeatures():
     return features_list, labels_list
 
 
-def plot(x_value, y_value, target, title, x_label, y_label):
+def plot(x_label, y_label, target, title):
     ''' Produces a scatter plot of the given values '''
-    plt.scatter(x_value, y_value, c=target)
+    features_list, labels_list = getFeatures()
+    x_index = -1
+    if (x_label == "Sepal Length"):
+        x_index = 0
+    elif (x_label == "Sepal Width"):
+        x_index = 1
+    elif (x_label == "Petal Length"):
+        x_index = 2
+    elif (x_label == "Petal Width"):
+        x_index = 3
+
+    y_index = -1
+    if (y_label == "Sepal Length"):
+        y_index = 0
+    elif (y_label == "Sepal Width"):
+        y_index = 1
+    elif (y_label == "Petal Length"):
+        y_index = 2
+    elif (y_label == "Petal Width"):
+        y_index = 3
+
+    plt.scatter(features_list[x_index], features_list[y_index], c=target)
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
@@ -72,10 +93,7 @@ x_train, x_test, y_train, y_test = train_test_split(
     iris['data'], iris['target'], random_state=0)
 
 # Visualazing the data
-features_list, labels_list = getFeatures()
 target = iris.target
-# plot(features_list[0], features_list[1], target,
-#      "Sepal Length vs Sepal Width", labels_list[0], labels_list[1])
 
 # Training the model
 knn = train(x_train, y_train)
