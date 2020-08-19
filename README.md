@@ -5,3 +5,4 @@ On week five of Summer Program for Incoming Students (SPIS) at UCSD, student wil
 ### Projects:
 
 - [Iris Recognition](./iris_recognition)
+- [Cuisine Classifier](./cuisine_classifier)
