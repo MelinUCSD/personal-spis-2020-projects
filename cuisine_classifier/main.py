@@ -49,13 +49,6 @@ def score(model, x_test, y_test):
 # Opening files - Training data
 with open("./data/train.json") as f:
     data = json.load(f)
-# Opening files - Testing data
-#with open("./data/test.json") as f_test:
-#    test_data = json.load(f_test)
-# Opening files - Predicting data
-#with open("./data/unprocessed/test.json") as f_test_id:
-#    test_data_id = json.load(f_test_id)
-#pprint(test_data_id)
 
 # Getting data
 x, y = getData(data)
@@ -99,6 +92,13 @@ result = score(knn, d2_x_test, y_test)
 #    d1_x_prediction = tmp.reshape(1, n_x * n_y)
 #    print(predict(knn, d1_x_prediction))
 
+# Opening files - Testing data
+#with open("./data/test.json") as f_test:
+#    test_data = json.load(f_test)
+# Opening files - Predicting data
+#with open("./data/unprocessed/test.json") as f_test_id:
+#    test_data_id = json.load(f_test_id)
+#pprint(test_data_id)
 #count = 0
 #for x in range(10):
 #    tmp = np.array(test_data[x]["ingredients"])
