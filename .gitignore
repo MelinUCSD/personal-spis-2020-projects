@@ -6,4 +6,4 @@ __pycache__
 *.Rproj
 rsconnect/
 .Rhistory
-unprocessed/
+cuisine_classifier/data/unprocessed/*
