@@ -3,6 +3,7 @@
 app.Rout
 __pycache__
 .Rproj.user
+.RData
 *.Rproj
 rsconnect/
 .Rhistory
