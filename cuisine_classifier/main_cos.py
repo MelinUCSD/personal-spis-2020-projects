@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import pickle as pk
 
-from prettyprinter import pprint
 from sklearn.metrics.pairwise import cosine_similarity
 
 def predict(df, classes, recipe):
@@ -55,4 +54,4 @@ menu4 = ["eggplant", "tomatoes", "yellow squashes", "zucchini", "olive oil",
          "onion", "garlic cloves", "red bell pepper", "salt", "pepper",
           "crushed tomatoes", "fresh basil", "parsley"]
 preprocessed_recipe = preprocess(menu4, all_ingredients)
-print(predict(df, classes, preprocessed_recipe))
+#print(predict(df, classes, preprocessed_recipe))
